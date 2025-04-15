@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= title %></title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <header>
+    <h1><%= title %></h1>
+    <nav>
+      <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/competitions">Competitions</a></li>
+        <li><a href="/societies/add">Add Society</a></li>
+      </ul>
+    </nav>
+  </header>
+  
+  <main>
+    <h2>List of Societies</h2>
+    <ul>
+      <% if (Societies && Societies.length > 0) { %>
+        <% Societies.forEach(function(society) { %>
+          <li>
+            <a href="/societies/<%= society.society_id %>">
+              <%= society.society_name %>
+            </a>
+            <p><%= society.society_description %></p>
+            <a href="/societies/<%= society.society_id %>/edit">Edit</a>
+            <form action="/societies/delete/<%= society.society_id %>" method="POST" style="display:inline;">
+              <button type="submit">Delete</button>
+            </form>
+          </li>
+        <% }); %>
+      <% } else { %>
+        <p>No societies found.</p>
+      <% } %>
+    </ul>
+  </main>
+
+  <footer>
+    <p>Society Management System &copy; 2024</p>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Societies</title>
+  <link rel="stylesheet" href="/css/societies.css">
+</head>
+<body>
+  <!-- Background Video -->
+  <video autoplay loop muted id="background-video">
+    <source src="/videos/background" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+
+  <header>
+    <h1>STUDENT SOCIETIES</h1>
+    <a href="/login" class="login-btn">Login</a>
+  </header>
+  <main>
+    <div class="contact-info">
+      <h2>CONTACT INFO</h2>
+      <p>Students Co-Curricular Activities Department</p>
+      <p>6th floor, Information Technology University (ITU),</p>
+      <p>Arfa Software Technology Park, Ferozpur Road, Lahore, Pakistan.</p>
+      <p>P: (042)-111-111-ITU (488)</p>
+      <p>Ext: 6061</p>
+      <a href="https://www.facebook.com" target="_blank" class="btn">VIEW FACEBOOK PAGE</a>
+    </div>
+    <div class="content">
+      <img src="/images/society.jpeg" alt="Sports Image">
+      <h2>Student Societies</h2>
+      <p >Student Societies at a university help students become well-rounded individuals and bring color to campus life. There are four student societies at ITU which encourage the development of leadership, professional, and personal strengths in the students.</p>
+      <h3>List of Societies</h3>
+      <ul class="society-list">
+        <% societies.forEach(society => { %>
+          <li class="dropdown">
+            <button class="dropdown-btn"><%= society.society_name %></button>
+            <div class="dropdown-content">
+              <p class="dropdown-content"><%= society.society_description %></p>
+            </div>
+          </li>
+        <% }); %>
+      </ul>
+    </div>
+  </main>
+  <script src="/js/dashboard.js"></script>
+</body>
+</html>

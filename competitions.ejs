@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= title %></title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <header>
+    <h1><%= title %></h1>
+    <nav>
+      <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/Societies">Societies</a></li>
+        <li><a href="/competitions/add">Add Competition</a></li>
+      </ul>
+    </nav>
+  </header>
+  
+  <main>
+    <h2>List of Competitions</h2>
+    <ul>
+      <% if (competitions && competitions.length > 0) { %> <!-- Fixed this check -->
+        <% competitions.forEach(function(competition) { %>
+          <li>
+            <a href="/competitions/<%= competition.competition_id %>">
+              <%= competition.competition_name %>
+            </a>
+            <p><%= competition.competition_description %></p>
+            <p><strong>Date:</strong> <%= competition.competition_date.toISOString().split('T')[0] %></p>
+            <p><strong>Fee:</strong> $<%= competition.competition_fee %></p>
+            <p><strong>Time:</strong> <%= competition.competition_time %></p>
+            <p><strong>Society:</strong> <%= competition.society_name || 'N/A' %></p>
+            <a href="/competitions/<%= competition.competition_id %>/edit">Edit</a>
+            <form action="/competitions/delete/<%= competition.competition_id %>" method="POST" style="display:inline;">
+              <button type="submit">Delete</button>
+            </form>
+          </li>
+        <% }); %>
+      <% } else { %>
+        <p>No competitions found.</p>
+      <% } %>
+    </ul>
+  </main>
+
+  <footer>
+    <p>Competition Management System &copy; 2024</p>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Signup</title>
+  <link rel="stylesheet" href="/css/signup.css">
+</head>
+<body>
+  <div class="signup-container">
+    <div class="signup-form">
+      <h1>Signup to Society Management</h1>
+
+      <!-- Display error message if there is one -->
+      <% if (error_msg) { %>
+        <div class="message error-message">
+          <p><%= error_msg %></p>
+        </div>
+      <% } %>
+      
+      <!-- Display success message if there is one -->
+      <% if (success_msg) { %>
+        <div class="message success-message">
+          <p><%= success_msg %></p>
+        </div>
+      <% } %>
+
+      <form action="/signup" method="POST">
+        <div class="input-group">
+          <label for="username">Username:</label>
+          <input type="text" name="username" id="username" placeholder="Enter your username" required>
+        </div>
+
+        <div class="input-group">
+          <label for="email">Email:</label>
+          <input type="email" name="email" id="email" placeholder="Enter your email" required>
+        </div>
+
+        <div class="input-group">
+          <label for="password">Password:</label>
+          <input type="password" name="password" id="password" placeholder="Enter your password" required>
+        </div>
+
+        <div class="input-group">
+          <label for="role">Role:</label>
+          <select name="role" id="role" required>
+            <option value="student">Student</option>
+            <option value="admin">Admin</option>
+            <option value="society_manager">Society Manager</option>
+          </select>
+        </div>
+
+        <button type="submit" class="btn">Sign Up</button>
+
+      </form>
+
+      <p>If you are already registered! <a href="/login">Login here</a></p>
+    </div>
+  </div>
+
+  <script src="/js/modal.js"></script>
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= title %></title>
+  <link rel="stylesheet" href="/css/add.css">
+</head>
+<body>
+  <header>
+    <h1><%= title %></h1>
+    <nav>
+      <ul>
+        <li><a href="/admin">Back to Dashboard</a></li>
+        <!-- Add other navigation links if necessary -->
+      </ul>
+    </nav>
+  </header>
+  
+  <main>
+    <h2>Edit Event</h2>
+    
+
+
+      <% if (error) { %>
+        <div class="error-message">
+          <p><%= error %></p>
+        </div>
+      <% } %>
+
+
+    <form action="/events/<%= event.event_id %>/edit" method="POST">
+      <label for="event_name">Event Name:</label>
+      <input type="text" id="event_name" name="event_name" value="<%= event.event_name %>" required><br>
+
+      <label for="event_description">Description:</label>
+      <textarea id="event_description" name="event_description" required><%= event.event_description %></textarea><br>
+
+      <label for="event_fee">Event Fee:</label>
+      <input type="number" id="event_fee" name="event_fee" value="<%= event.event_fee %>" required><br>
+
+      <!-- Add Date field with a placeholder example -->
+      <label for="event_date">Event Date:</label>
+      <input type="date" id="event_date" name="event_date" value="<%= event.event_date ? new Date(event.event_date).toISOString().split('T')[0] : '2024-12-31' %>" placeholder="YYYY-MM-DD" required><br>
+      <!-- Default date: '2024-12-31' if no date is provided -->
+
+      <label for="society_sid">Society ID:</label>
+      <input type="text" id="society_sid" name="society_sid" value="<%= event.society_sid %>" required><br>
+
+      <button type="submit">Update Event</button>
+    </form>
+  
+  </main>
+
+  <!-- <footer>
+    <p>Event Management System &copy; 2024</p>
+  </footer> -->
+</body>
+</html>

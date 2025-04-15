@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= title %></title>
+  <link rel="stylesheet" href="/css/add.css">
+</head>
+<body>
+  <header>
+    <h1><%= title %></h1>
+    <nav>
+      <ul>
+        <li><a href="/admin">Back to Dashboard</a></li>
+        <!-- <li><a href="/competitions">Competitions</a></li>
+        <li><a href="/societies">Societies</a></li> -->
+      </ul>
+    </nav>
+  </header>
+  
+  <main>
+    <h2>Edit Society</h2>
+    <form action="/societies/<%= society.society_id %>/edit" method="POST">
+      <label for="society_name">Society Name:</label>
+      <input type="text" id="society_name" name="society_name" value="<%= society.society_name %>" required><br>
+
+      <label for="society_description">Description:</label>
+      <textarea id="society_description" name="society_description" required><%= society.society_description %></textarea><br>
+
+      <label for="president">President:</label>
+      <input type="text" id="president" name="president" value="<%= society.president %>" required><br>
+
+      <button type="submit">Update Society</button>
+    </form>
+    <!-- <a href="/societies">Back to Societies List</a> -->
+     
+    <!-- <form action="/societies/delete/<%= society.society_id %>" method="POST">
+      <button type="submit">Delete</button>
+    </form>
+     -->
+  
+  </main>
+
+  <footer>
+    <p>Society Management System &copy; 2024</p>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Portal</title>
+  <link rel="stylesheet" href="/css/styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+</head>
+<body>
+  <header class="top-nav">
+    <div class="logo">
+      <h1>Admin Portal</h1>
+    </div>
+    <div class="user-profile">
+      <button class="dropdown-btn">
+        <i class="fas fa-user-circle"></i> <%= adminEmail %>
+      </button>
+      <div class="dropdown-content">
+        <p>Logged in as: <%= adminEmail %></p>
+        <a href="/admin/logout">Logout</a>
+      </div>
+    </div>
+  </header>
+
+  <div class="container">
+    <aside class="sidebar">
+        <ul class="sidebar-menu">
+            <li>
+              <button onclick="loadContent('society')">
+                <i class="fas fa-building"></i> Societies
+              </button>
+            </li>
+            <li>
+              <button onclick="loadContent('Event')">
+                <i class="fas fa-calendar-alt"></i> Events
+              </button>
+            </li>
+            <li>
+              <button onclick="loadContent('competitions')">
+                <i class="fas fa-trophy"></i> Competitions
+              </button>
+            </li>
+            <li>
+              <button onclick="loadContent('participants')">
+                <i class="fas fa-users"></i> Participants
+              </button>
+            </li>
+            <li>
+              <button onclick="loadContent('attendees')">
+                <i class="fas fa-users"></i> Event-attendees
+              </button>
+            </li>
+            <li>
+              <button onclick="loadContent('members')">
+                <i class="fas fa-users"></i> Society Members
+              </button>
+            </li>
+          </ul>
+    </aside>
+    <main class="content-area">
+      <h2>Welcome, Admin</h2>
+      <div id="dynamic-content">
+        <!-- Content loads dynamically here -->
+      </div>
+    </main>
+  </div>
+
+  <script>
+    function loadContent(endpoint) {
+      fetch(`/admin/${endpoint}`)
+        .then(response => response.text())
+        .then(html => {
+          document.getElementById('dynamic-content').innerHTML = html;
+        })
+        .catch(error => console.error('Error loading content:', error));
+    }
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= title %></title>
+  <link rel="stylesheet" href="/css/add.css">
+</head>
+<body>
+  <header>
+    <h1><%= title %></h1>
+    <nav>
+      <ul>
+        <li><a href="/admin">Back to Dashboard</a></li>
+        <!-- <li><a href="/competitions">Competitions</a></li>
+        <li><a href="/societies">Societies</a></li> -->
+      </ul>
+    </nav>
+  </header>
+  
+  <main>
+    <h2>Add New Event</h2>
+  
+    <% if (error) { %>
+        <div class="error-message">
+          <p><%= error %></p>
+        </div>
+      <% } %>
+  
+
+    <form action="/events/add" method="POST">
+      <label for="event_id">Event ID:</label>
+      <input type="text" id="event_id" name="event_id" required><br>
+
+      <label for="event_name">Event Name:</label>
+      <input type="text" id="event_name" name="event_name" required><br>
+
+      <label for="event_date">Event Date:</label>
+      <input type="date" id="event_date" name="event_date" required placeholder="YYYY-MM-DD"><br>
+      <!-- <small>Example: 2024-12-25</small><br> -->
+
+      <label for="event_fee">Event Fee:</label>
+      <input type="number" id="event_fee" name="event_fee" required><br>
+
+      <label for="event_description">Description:</label>
+      <textarea id="event_description" name="event_description" required></textarea><br>
+
+      <label for="society_sid">Society ID:</label>
+      <input type="text" id="society_sid" name="society_sid" required><br>
+
+      <button type="submit">Add Event</button>
+    </form>
+  </main>
+
+  <!-- <footer>
+    <p>Event Management System &copy; 2024</p>
+  </footer> -->
+</body>
+</html>
